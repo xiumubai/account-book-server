@@ -9,13 +9,9 @@ class HomeController extends Controller {
   }
   async user() {
     const { ctx } = this;
-    const { id } = ctx.params;
-    const { name, slogen } = await ctx.service.home.user();
-    ctx.body = {
-      id,
-      name,
-      slogen,
-    };
+    // const { id } = ctx.params;
+    const result = await ctx.service.home.user();
+    ctx.body = result;
   }
   async add() {
     const { ctx } = this;
