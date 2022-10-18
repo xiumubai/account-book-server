@@ -10,4 +10,6 @@ module.exports = app => {
   router.post('/addUser', controller.home.addUser);
   router.post('/edit_user', controller.home.editUser);
   router.post('/delete_user', controller.home.deleteUser);
+  /** 注册 */
+  router.post('/api/user/register', controller.user.register);
 };
