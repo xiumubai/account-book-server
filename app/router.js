@@ -17,4 +17,6 @@ module.exports = app => {
   router.post('/api/user/login', controller.user.login);
   /** 测试token */
   router.get('/api/user/test', _jwt, controller.user.test);
+  /** 获取用户信息 */
+  router.get('/api/user/get_userinfo', _jwt, controller.user.getUserInfo);
 };
