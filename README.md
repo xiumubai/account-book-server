@@ -2,6 +2,9 @@
 
 记账本服务端
 
+
+代码分支`feature/database-demo`是数据库基本的增删改查功能的示例。 
+
 ## QuickStart
 
 <!-- add docs here for user -->
