@@ -40,6 +40,10 @@ module.exports = appInfo => {
     agent: false,
   };
 
+  // 加密字符串
+  config.jwt = {
+    secret: 'xiumubai',
+  };
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1665986798464_7515';
