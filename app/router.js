@@ -19,4 +19,6 @@ module.exports = app => {
   router.get('/api/user/test', _jwt, controller.user.test);
   /** 获取用户信息 */
   router.get('/api/user/get_userinfo', _jwt, controller.user.getUserInfo);
+  /** 修改用户信息 */
+  router.post('/api/user/edit_userinfo', _jwt, controller.user.editUserInfo);
 };
