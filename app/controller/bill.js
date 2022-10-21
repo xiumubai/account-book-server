@@ -179,6 +179,50 @@ class BillController extends Controller {
     }
 
   }
+
+  async update() {
+    const { ctx, app } = this;
+    // 账单的相关参数，这里注意要把账单的 id 也传进来
+    const { id, amount, type_id, type_name, date, pay_type, remark = '' } = ctx.request.body;
+    const token = ctx.request.header.authorization;
+    // 获取当前用户信息
+    const decode = await app.jwt.verify(token, app.config.jwt.secret);
+    if (!decode) return;
+    const user_id = decode.id;
+    // 判空处理
+    if (!amount || !type_id || !type_name || !date || !pay_type) {
+      ctx.body = {
+        code: 400,
+        msg: '参数错误',
+        data: null,
+      };
+    }
+
+    try {
+      // 根据账单 id 和 user_id，修改账单数据
+      await ctx.service.bill.update({
+        id, // 账单 id
+        amount, // 金额
+        type_id, // 消费类型 id
+        type_name, // 消费类型名称
+        date, // 日期
+        pay_type, // 消费类型
+        remark, // 备注
+        user_id, // 用户 id
+      });
+      ctx.body = {
+        code: 200,
+        msg: '请求成功',
+        data: null,
+      };
+    } catch {
+      ctx.body = {
+        code: 500,
+        msg: '系统错误',
+        data: null,
+      };
+    }
+  }
 }
 
 module.exports = BillController;

@@ -30,4 +30,6 @@ module.exports = app => {
   router.get('/api/bill/list', _jwt, controller.bill.list);
   /** 账单详情 */
   router.get('/api/bill/detail', _jwt, controller.bill.detail);
+  /** 修改账单 */
+  router.post('/api/bill/update', _jwt, controller.bill.update);
 };
