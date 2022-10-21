@@ -142,6 +142,43 @@ class BillController extends Controller {
       };
     }
   }
+
+  async detail() {
+    const { ctx, app } = this;
+    const { id = '' } = ctx.query;
+    const token = ctx.request.header.authorization;
+    // 获取当前用户信息
+    const decode = await app.jwt.verify(token, app.config.jwt.secret);
+    if (!decode) return;
+    const user_id = decode.id;
+
+    if (!id) {
+      ctx.body = {
+        code: 500,
+        msg: 'id不存在',
+        data: null,
+      };
+      return;
+    }
+
+    try {
+      // 从数据库中获取账单详情
+      const result = await ctx.service.bill.detail(user_id);
+      ctx.body = {
+        code: 200,
+        msg: '请求成功',
+        data: result,
+      };
+
+    } catch {
+      ctx.body = {
+        code: 500,
+        msg: '系统错误',
+        data: null,
+      };
+    }
+
+  }
 }
 
 module.exports = BillController;
