@@ -1,0 +1,41 @@
+<!--
+ * @Author: 朽木白
+ * @Date: 2022-10-21 09:01:59
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2022-10-21 09:48:26
+ * @Description: 图片上传测试
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input id="upload" type="file"/>
+  <script>
+    var input = document.getElementById('upload')
+    console.log(input);
+    input.addEventListener('change', function(e) {
+      var file = input.files[0]
+      console.log(file);
+      let formData = new FormData()
+      formData.append('file', file)
+
+      console.log('formData', formData)
+
+      // 调用上传接口
+      fetch('http://localhost:7001/api/upload', {
+        method: 'post',
+        body: formData
+      }).then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      })
+    })
+  </script>
+</body>
+</html>

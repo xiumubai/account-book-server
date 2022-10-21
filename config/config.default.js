@@ -45,6 +45,17 @@ module.exports = appInfo => {
     secret: 'xiumubai',
   };
 
+  // 文件接收模式
+  config.multipart = {
+    mode: 'file',
+  };
+
+  config.cors = {
+    origin: '*', // 允许所有跨域访问
+    credentials: true, // 允许 Cookie 跨域跨域
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
+
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1665986798464_7515';
 
@@ -54,6 +65,7 @@ module.exports = appInfo => {
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    uploadDir: 'app/public/upload',
   };
 
   return {

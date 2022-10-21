@@ -21,4 +21,6 @@ module.exports = app => {
   router.get('/api/user/get_userinfo', _jwt, controller.user.getUserInfo);
   /** 修改用户信息 */
   router.post('/api/user/edit_userinfo', _jwt, controller.user.editUserInfo);
+  /** 上传图片 */
+  router.post('/api/upload', controller.upload.upload); // 上传图片
 };

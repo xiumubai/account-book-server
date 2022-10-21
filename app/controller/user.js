@@ -136,7 +136,7 @@ class UserController extends Controller {
   // 修改用户信息
   async editUserInfo() {
     const { ctx, app } = this;
-    const { signature = '' } = ctx.request.body;
+    const { signature = '', avatar } = ctx.request.body;
 
     try {
       const token = ctx.request.header.authorization;
@@ -146,6 +146,7 @@ class UserController extends Controller {
       await ctx.service.user.editUserInfo({
         ...userInfo,
         signature,
+        avatar,
       });
 
       ctx.body = {
@@ -155,6 +156,7 @@ class UserController extends Controller {
           id: decode.id,
           signature,
           username: userInfo.username,
+          avatar,
         },
       };
     } catch (e) {
