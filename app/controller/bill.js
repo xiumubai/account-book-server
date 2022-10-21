@@ -223,6 +223,41 @@ class BillController extends Controller {
       };
     }
   }
+
+  async delete() {
+
+    const { ctx, app } = this;
+    // 账单的相关参数，这里注意要把账单的 id 也传进来
+    const { id } = ctx.request.body;
+    const token = ctx.request.header.authorization;
+    // 获取当前用户信息
+    const decode = await app.jwt.verify(token, app.config.jwt.secret);
+    if (!decode) return;
+    const user_id = decode.id;
+
+    if (!id) {
+      ctx.body = {
+        code: 400,
+        msg: '参数错误',
+        data: null,
+      };
+    }
+
+    try {
+      await ctx.service.bill.delete(id, user_id);
+      ctx.body = {
+        code: 200,
+        msg: '请求成功',
+        data: null,
+      };
+    } catch {
+      ctx.body = {
+        code: 500,
+        msg: '系统错误',
+        data: null,
+      };
+    }
+  }
 }
 
 module.exports = BillController;

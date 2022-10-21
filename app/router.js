@@ -32,4 +32,7 @@ module.exports = app => {
   router.get('/api/bill/detail', _jwt, controller.bill.detail);
   /** 修改账单 */
   router.post('/api/bill/update', _jwt, controller.bill.update);
+  /** 删除账单 */
+  router.post('/api/bill/delete', _jwt, controller.bill.delete); // 删除账单
+
 };
