@@ -24,6 +24,8 @@ module.exports = app => {
   router.post('/api/user/edit_userinfo', _jwt, controller.user.editUserInfo);
   /** 上传图片 */
   router.post('/api/upload', controller.upload.upload);
+  /** 获取消费类型列表 */
+  router.get('/api/type/list', _jwt, controller.type.list);
   /** 添加账单 */
   router.post('/api/bill/add', _jwt, controller.bill.add);
   /** 账单列表 */
