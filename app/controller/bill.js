@@ -65,7 +65,7 @@ class BillController extends Controller {
       const _list = list.filter(item => {
         if (type_id !== 'all') {
           // 根据类型和时间（当月）筛选数据
-          return moment(Number(item.date)).format('YYYY-MM') === date && type_id === item.type_id;
+          return moment(Number(item.date)).format('YYYY-MM') === date && type_id.toString() === item.type_id.toString();
         }
         // 返回当月所有的数据
         return moment(Number(item.date)).format('YYYY-MM') === date;
@@ -163,7 +163,7 @@ class BillController extends Controller {
 
     try {
       // 从数据库中获取账单详情
-      const result = await ctx.service.bill.detail(user_id);
+      const result = await ctx.service.bill.detail(id, user_id);
       ctx.body = {
         code: 200,
         msg: '请求成功',
