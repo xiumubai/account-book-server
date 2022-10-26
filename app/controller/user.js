@@ -33,7 +33,7 @@ class UserController extends Controller {
     const result = await ctx.service.user.register({
       username,
       password,
-      signature: '世界和平。',
+      signature: '',
       avatar: defaultAvatar,
     });
 
